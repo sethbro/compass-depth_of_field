@@ -1,0 +1,9 @@
+@import "compass/css3/transition"
+
+=depth_of_field( $color: #000, $amt: 6px )
+  & > *
+    +transition( (color, text-shadow), 0.4s, ease-out )
+
+  & > *:hover ~ *
+    color: transparent
+    text-shadow: $color 0 0 $amt
