@@ -1,9 +1,21 @@
-@import "compass/css3/transition"
+=depth_of_field( $color: #000, $amt: 6px, $initial_blur: background )
+  =blur
+    color: transparent
+    text-shadow: $color 0 0 $amt
 
-=depth_of_field( $color: #000, $amt: 6px )
   & > *
     +transition( (color, text-shadow), 0.4s, ease-out )
 
+  & > *:hover
+    color: $color
+    text-shadow: $color 0 0 0 !important
+
   & > *:hover ~ *
-    color: transparent
-    text-shadow: $color 0 0 $amt
+    +blur
+
+  @if $initial_blur == background
+    & > *:nth-child(1)
+      +blur
+  @else
+    & > *:nth-child(2)
+      +blur
